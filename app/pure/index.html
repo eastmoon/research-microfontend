@@ -6,8 +6,13 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <script src="./module-1/index.js"></script>
-  <script src="./module-2/index.js"></script>
+  <script src="./nonmodule-1/index.js"></script>
+  <script src="./nonmodule-2/index.js"></script>
+  <script src="./module-1/index.js" type="module"></script>
+  <script type="module">
+      import * as m from "./module-2/index.js";
+      window.m2 = m;
+  </script>
 </head>
 <body>
 <div>
@@ -22,12 +27,31 @@
     </code>
     <p />
     And you can see, the function add will be replace by add function in module-2/index.js.
+    <p />
+    Load javascript with &lt;script&gt; tag and type "module".
+    It is ES6 module import attribute, the detail could reference to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">MDN - Javascript modules</a>
+    Use it attribute, import javascript file could be a object in window, then show function result in Console.
+    <code>
+      index.js:4 Show M1. <br />
+      index.js:9 M1 : 30 <br />
+      index.js:4 Show M2. <br />
+      index.js:9 M2 : 30 <br />
+    </code>
+    <p />
 </div>
 </body>
 <script>
-    showm1();
-    add(10, 20);
-    showm2();
-    add(10, 20);
+    document.addEventListener("DOMContentLoaded", () => {
+        // non-module
+        showm1();
+        add(10, 20);
+        showm2();
+        add(10, 20);
+        // module
+        m1.show();
+        m1.add(10, 20);
+        m2.show();
+        m2.add(10, 20);
+    });
 </script>
 </html>

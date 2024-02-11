@@ -30,6 +30,13 @@
 
 ### Pure JavaScript
 
++ [範本程式](./app/pure)
+    - [範例網址：localhost:8080](http://localhost:8080/)
++ 命令指令：
+    - ```mf pure```：啟動範本伺服器
+    - ```mf pure into```：進入範本伺服器
+    - ```mf pure rm```：移除範本伺服器
+
 基於 Pure JavaScript 的基礎 ```<script>``` 標籤，確認載入函數的基礎外部腳本會產生的原則。
 
 + 同名覆蓋
@@ -40,6 +47,11 @@
 
 ![](./doc/img/pure-demo-001.png)
 
+若使用 ```<script type="module">``` 標籤，則匯入的檔案會基於 ES6 模塊規則匯入 ( import )，若為將匯入物件指定給 window，則物件將無法經由 window 提取；反之，若再匯入後指定給 window，則可依據其設計添加至指定的進入點，便於後續對物件存取。
+
++ [<script>: type attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type)
+    - [JavaScript modules - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+    - [SCRIPT 標籤與模組](https://openhome.cc/zh-tw/javascript/script/module/)
 
 ### Web component
 
