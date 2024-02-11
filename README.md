@@ -53,6 +53,13 @@
     - [JavaScript modules - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
     - [SCRIPT 標籤與模組](https://openhome.cc/zh-tw/javascript/script/module/)
 
+![](./doc/img/pure-demo-002.png)
+
+此外，由於匯入並指定給 Window 的方式有所差別，可以看到指定後的物件結構並不相同。
+
++ ```window.m1``` 是在模組檔案最尾端添加，這樣使用模組在 window 的名稱為固定
++ ```window.m2``` 是在模組匯入後由 index.html 內添加進 window，這樣使用模組在 window 的名稱可於載入後再決定
+
 ### Web component
 
 基於 JavaScript 的設計原理，以 iframe、web component 概念建立範本，並注意以下可能問題：
