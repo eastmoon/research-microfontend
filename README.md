@@ -28,7 +28,20 @@
 
 ## 設計議題
 
-### JavaScript
+### Pure JavaScript
+
+基於 Pure JavaScript 的基礎 ```<script>``` 標籤，確認載入函數的基礎外部腳本會產生的原則。
+
++ 同名覆蓋
+在 JavaScript 原生規則下，函數名稱相同，後載入的會覆蓋前者。
+
++ 宣告於 Window
+在 JavaScript 原生規則下，函數載入後會宣告在 window 下，可以至 Console 中輸入 ```window.add``` 來確認函數結果
+
+![](./doc/img/pure-demo-001.png)
+
+
+### Web component
 
 基於 JavaScript 的設計原理，以 iframe、web component 概念建立範本，並注意以下可能問題：
 

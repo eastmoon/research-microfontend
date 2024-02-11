@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Pure JavaScript</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src="./module-1/index.js"></script>
+  <script src="./module-2/index.js"></script>
+</head>
+<body>
+<div>
+    Load javascript with &lt;script&gt; tag. <br />
+    It will show function result in Console. <br />
+    <p />
+    <code>
+      index.js:5 Show M1. <br />
+      index.js:11 M2 : 30 <br />
+      index.js:5 Show M2. <br />
+      index.js:11 M2 : 30 <br />
+    </code>
+    <p />
+    And you can see, the function add will be replace by add function in module-2/index.js.
+</div>
+</body>
+<script>
+    showm1();
+    add(10, 20);
+    showm2();
+    add(10, 20);
+</script>
+</html>
