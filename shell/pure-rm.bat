@@ -11,7 +11,7 @@ goto end
 @rem ------------------- declare function -------------------
 
 :action
-    for /f "tokens=1" %%p in ('docker ps -q -f="name=pure-research-microfontend-demo"') do ( set CONTAINER_ID=%%p )
+    for /f "tokens=1" %%p in ('docker ps -q -f="name=pure-%PROJECT_NAME%-demo"') do ( set CONTAINER_ID=%%p )
     if defined CONTAINER_ID (
         docker rm -f %CONTAINER_ID%
     ) else (
