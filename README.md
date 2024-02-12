@@ -78,7 +78,7 @@ Web Component 是基於 [HTMLElement](https://developer.mozilla.org/en-US/docs/W
 + Shadow DOM：另 HTMLElement 具有自己的 DOM Tree，並確 HTMLElement 中的 HTML、CSS、JS 僅影響自身的 DOM
 + HTML Templates：透過載入額外宣告的 HTML 樣板，替代 HTMLElement 內經由 DOM API 逐個建立的 DOM 內容
 
-對於 Web Component 其他的功能與運用可以參考 MDN 在 [web-components-examples](https://github.com/mdn/web-components-examples/) 中的範例，而其中最主要的設計是 Shadow DOM，其中以下幾點特性，成為 iframe 替代解決方案：
+對於 Web Component 其他的功能與運用可以參考 MDN 在 [web-components-examples](https://github.com/mdn/web-components-examples/) 中的範例，而其中最主要的設計是 Shadow DOM，基於以下特性，可令其成為 [iframe](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) 替代解決方案：
 
 + Isolated DOM：隔絕性，Shadow DOM 可視為 DOM 中的 DOM，因保有自身的 DOM Tree，使其下的 HTML、CSS、JS 可與上層的 DOM 隔離。
 + Scoped CSS：因隔絕性，Shadow DOM 中定義的 CSS 作用範圍僅限 Shadow DOM。
@@ -120,6 +120,9 @@ Web Component 是基於 [HTMLElement](https://developer.mozilla.org/en-US/docs/W
         + [Styling a Web Component](https://css-tricks.com/styling-a-web-component/)
         + [Web Component 學習筆記](https://johnnywang1994.github.io/book/articles/js/web-component.html)
         + [Shadow DOM ：獨立的Web組件](https://www.gss.com.tw/blog/shadow-dom-%EF%BC%9A%E7%8D%A8%E7%AB%8B%E7%9A%84web%E7%B5%84%E4%BB%B6)
+        + iframe vs web component
+            - [iFrames and Web Components | Thoughtful technologies](https://www.factorial.io/en/blog/building-towards-reusable-modular-web-iframes-and-web-components)
+            - [Removing iframe and Switching to Web Component for the Most Popular PDF Viewer](https://apryse.com/blog/replacing-iframe-to-web-component)
     - [HTML <iframe> Tag - w3schools](https://www.w3schools.com/tags/tag_iframe.ASP)
         + [The Strengths and Benefits of Micro Frontends](https://www.toptal.com/front-end/micro-frontends-strengths-benefits)
     - [Module Federation - Webpack](https://webpack.js.org/concepts/module-federation/)
