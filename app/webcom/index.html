@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Web Component</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src="./component-1/index.js" type="module"></script>
+  <script src="./component-2/index.js" type="module"></script>
+  <script src="./component-3/index.js" type="module"></script>
+</head>
+<body>
+<div>
+    <h1><code>:base</code> demo</h1>
+
+    <com-1 text="Custom element example text"></com-1>
+
+    <h1><code>:shadowRoot</code> demo</h1>
+
+    <com-2 text="Custom element example text"></com-2>
+
+    <h1><code>:template</code> demo</h1>
+
+    <com-3 />
+</div>
+<template id="demo-template">
+    <style>
+      p {
+        color: white;
+        background-color: #666;
+        padding: 5px;
+      }
+    </style>
+    <p><slot name="my-text">My default text</slot></p>
+</template>
+</body>
+</html>

@@ -62,10 +62,37 @@
 
 ### Web component
 
-基於 JavaScript 的設計原理，以 iframe、web component 概念建立範本，並注意以下可能問題：
++ [範本程式](./app/webcom)
+    - [範例網址：localhost:8080](http://localhost:8081/)
++ 命令指令：
+    - ```mf webcom```：啟動範本伺服器
+    - ```mf webcom into```：進入範本伺服器
+    - ```mf webcom rm```：移除範本伺服器
 
-+ 多個封裝、分次載入運作
-+ 同名爭議
+![](./doc/img/webcom-shadow-dom.png)
+> from [Web Components and Types it’s Includes in LWC](https://jayakrishnasfdc.wordpress.com/2020/11/29/web-components-and-types-its-includes-in-lwc/)
+
+Web Component 是基於 [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) 的 DOM API，以此封裝 HTML、CSS、JS 設定與行為，從而完成具有獨立可重複利用的元件；而構成其封裝，主要有三個功能：
+
++ Custom Elements：用於宣告繼承 HTMLElement 的類別，實際在 DOM 中的標籤名稱
++ Shadow DOM：另 HTMLElement 具有自己的 DOM Tree，並確 HTMLElement 中的 HTML、CSS、JS 僅影響自身的 DOM
++ HTML Templates：透過載入額外宣告的 HTML 樣板，替代 HTMLElement 內經由 DOM API 逐個建立的 DOM 內容
+
+對於 Web Component 其他的功能與運用可以參考 MDN 在 [web-components-examples](https://github.com/mdn/web-components-examples/) 中的範例，而其中最主要的設計是 Shadow DOM，其中以下幾點特性，成為 iframe 替代解決方案：
+
++ Isolated DOM：隔絕性，Shadow DOM 可視為 DOM 中的 DOM，因保有自身的 DOM Tree，使其下的 HTML、CSS、JS 可與上層的 DOM 隔離。
++ Scoped CSS：因隔絕性，Shadow DOM 中定義的 CSS 作用範圍僅限 Shadow DOM。
++ Composition：因隔絕性，Shadow DOM 內的 DOM Tree 獨立於外，因此，可基於 ```<select>```、```<form>``` 等元素構成期望的互動行為。
+
+嚴格來說，Web Component 是 ```<script type="module">``` 的一種延伸運用，先透過 es6 模組的獨立性載入程式，在程式載入完畢後宣告自身類別對應的元素名稱，並基於其自身 Shadwo DOM 特性，做到內部獨立的特性，從而讓整個 HTML 主頁能反覆利用該元素。
+
+而範本程式主要基於前述三功能設計：
+
++ ```com-1```，基於 HTMLElement 宣告類別，並新增元素至畫面
+    - 本範例內宣告 ```<style>``` 於此，可以發現此處宣告的樣式影響了整體的 ```div``` 文字顏色
++ ```com-2```，基於 HTMLElement 宣告類別，並新增元素至自身的 Shadwo DOM 中
+    - 本範例內宣告 ```<style>``` 於此，可以可以發現此處宣告的樣式僅影響了 Shadow DOM 中的 ```div``` 文字顏色
++ ```com-3```，基於 HTMLElement 宣告類別，並將外部的 HTML 樣式添加自 Shadwo DOM 中
 
 ### Webpack
 
@@ -89,7 +116,10 @@
 + [A Comprehensive Guide to Micro Frontend Architecture](https://medium.com/appfoster/a-comprehensive-guide-to-micro-frontend-architecture-cc0e31e0c053)
     - [Web Components - MDN ](https://developer.mozilla.org/en-US/docs/Web/API/Web_components)
         + [Micro Frontends - extending the microservice idea to frontend development](https://micro-frontends.org/)
+        + [web-components-examples - MDN Github](https://github.com/mdn/web-components-examples/)
+        + [Styling a Web Component](https://css-tricks.com/styling-a-web-component/)
         + [Web Component 學習筆記](https://johnnywang1994.github.io/book/articles/js/web-component.html)
+        + [Shadow DOM ：獨立的Web組件](https://www.gss.com.tw/blog/shadow-dom-%EF%BC%9A%E7%8D%A8%E7%AB%8B%E7%9A%84web%E7%B5%84%E4%BB%B6)
     - [HTML <iframe> Tag - w3schools](https://www.w3schools.com/tags/tag_iframe.ASP)
         + [The Strengths and Benefits of Micro Frontends](https://www.toptal.com/front-end/micro-frontends-strengths-benefits)
     - [Module Federation - Webpack](https://webpack.js.org/concepts/module-federation/)
