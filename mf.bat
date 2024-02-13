@@ -33,7 +33,7 @@ set CLI_DIRECTORY=%~dp0
 set CLI_FILE=%~n0%~x0
 set CLI_FILENAME=%~n0
 set CLI_FILEEXTENSION=%~x0
-set CLI_SHELL_DIRECTORY=%CLI_DIRECTORY%shell
+set CLI_SHELL_DIRECTORY=%CLI_DIRECTORY%conf\cli
 
 @rem ------------------- declare CLI variable -------------------
 
