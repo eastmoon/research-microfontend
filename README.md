@@ -125,13 +125,16 @@ Web Component 是基於 [HTMLElement](https://developer.mozilla.org/en-US/docs/W
 
 ### Multiple Frontend Framework
 
-基於不同前端框架的範本建立
+建立不同前端框架的範本
 
 + [範本程式](./app/mff)
     - [範例網址：localhost:8083](http://localhost:8083/)
 + 命令指令：
     - ```mf mff```：啟動範本伺服器，伺服器內容來源於編譯 Webpack 專案
     - ```mf mff rm```：移除範本伺服器
+    - ```mf mff dev```：進入專案建置容器
+        + ```mf mff dev [home|react|vue|angular]``` 進入指定前端框架對應的建置容器
+    - ```mf mff dev [home|react|vue|angular]```：編譯指定前端框架專案，並輸出到 cache/mff 目錄下
 
 ### Webpack Module Federation
 

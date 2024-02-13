@@ -1,0 +1,15 @@
+# Setting base image
+FROM node:18
+
+# Update npm
+RUN npm update -g
+
+# Install tools
+RUN npm install -g @angular/cli
+RUN npm install -g @angular-devkit/schematics-cli
+
+# Disable angular analytics
+RUN ng analytics disable --global
+
+# Setting
+WORKDIR /app
