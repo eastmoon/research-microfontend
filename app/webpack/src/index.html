@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Webpack App</title>
+    </head>
+    <body>
+        <h1>Webpack hello world!</h1>
+        <h2>Tip: Check your console</h2>
+        <h1>Web Component demo</h1>
+        <div>
+            <h1><code>:base</code> demo</h1>
+
+            <com-1 text="Custom element example text"></com-1>
+
+            <h1><code>:shadowRoot</code> demo</h1>
+
+            <com-2 text="Custom element example text"></com-2>
+
+            <h1><code>:template</code> demo</h1>
+
+            <com-3 />
+        </div>
+    </body>
+    <template id="demo-template">
+        <style>
+          p {
+            color: white;
+            background-color: #666;
+            padding: 5px;
+          }
+        </style>
+        <p><slot name="my-text">My default text</slot></p>
+    </template>
+</html>

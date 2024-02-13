@@ -63,7 +63,7 @@
 ### Web component
 
 + [範本程式](./app/webcom)
-    - [範例網址：localhost:8080](http://localhost:8081/)
+    - [範例網址：localhost:8081](http://localhost:8081/)
 + 命令指令：
     - ```mf webcom```：啟動範本伺服器
     - ```mf webcom into```：進入範本伺服器
@@ -96,10 +96,36 @@ Web Component 是基於 [HTMLElement](https://developer.mozilla.org/en-US/docs/W
 
 ### Webpack
 
++ [範本程式](./app/webpack)
+    - [範例網址：localhost:8082](http://localhost:8082/)
++ 命令指令：
+    - ```mf webpack```：啟動範本伺服器，伺服器內容來源於編譯 Webpack 專案
+    - ```mf webpack rm```：移除範本伺服器
+    - ```mf webpack dev```：啟動開發環境容器，並以 bash 進入容器內
+    - ```mf webpack serve```：啟動 Webpack 開發伺服器
+    - ```mf webpack dev```：編譯 Webpack 專案
+
+基於 Webpack 進行 JavaScript 封裝，本質上，藉由 Webpack 的封裝並未於直接撰寫有何差別，只是 Webpack 可提供諸如開發伺服器、JS 與 CSS 整合與壓縮，這些常用的開發工具與產品化處理流程；若配合 Webpack 的 [Multiple Entry Points](https://webpack.js.org/concepts/output/#multiple-entry-points)，可針對各個 Web Component 進行編譯與獨立輸出，並自動合併至 HTML 主頁中。
+
+### Multiple Frontend Framework
+
+基於不同前端框架的範本建立
+
++ [範本程式](./app/mff)
+    - [範例網址：localhost:8083](http://localhost:8083/)
++ 命令指令：
+    - ```mf mff```：啟動範本伺服器，伺服器內容來源於編譯 Webpack 專案
+    - ```mf mff rm```：移除範本伺服器
+
+### Webpack Module Federation
+
 基於 Webpack Module Federation 設計原理，建立不同前端框架的範本混用：
 
-+ React 不同版本
-+ React、Vue、Angular 框架混用
++ 基礎封裝 base 與存取原則
+    + 模組登記、搜尋、取回方式
++ 基於框架的 web component
+    + React 不同版本
+    + React、Vue、Angular 框架混用
 
 其設計應注意以下可能問題：
 
