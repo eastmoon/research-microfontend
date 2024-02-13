@@ -24,12 +24,12 @@ goto end
     goto end
 
 :short
-    echo Startup Webpack develop server
+    echo Build Webpack project
     goto end
 
 :help
     echo This is a Command Line Interface with project %PROJECT_NAME%
-    echo Startup Webpack develop server
+    echo Build Webpack project
     echo.
     echo Options:
     echo      --help, -h        Show more information with command.

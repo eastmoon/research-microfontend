@@ -99,11 +99,11 @@ Web Component 是基於 [HTMLElement](https://developer.mozilla.org/en-US/docs/W
 + [範本程式](./app/webpack)
     - [範例網址：localhost:8082](http://localhost:8082/)
 + 命令指令：
-    - ```mf webpack```：啟動範本伺服器，伺服器內容來源於編譯 Webpack 專案
-    - ```mf webpack rm```：移除範本伺服器
-    - ```mf webpack dev```：啟動開發環境容器，並以 bash 進入容器內
-    - ```mf webpack serve```：啟動 Webpack 開發伺服器
-    - ```mf webpack dev```：編譯 Webpack 專案
+    - ```mf webpack base```：啟動範本伺服器，伺服器內容來源於編譯 Webpack 專案
+    - ```mf webpack base rm```：移除範本伺服器
+    - ```mf webpack base dev```：啟動開發環境容器，並以 bash 進入容器內
+    - ```mf webpack base serve```：啟動 Webpack 開發伺服器
+    - ```mf webpack base dev```：編譯 Webpack 專案
 
 基於 Webpack 進行 JavaScript 封裝，本質上，藉由 Webpack 的封裝並未於直接撰寫有何差別，只是 Webpack 可提供諸如開發伺服器、JS 與 CSS 整合與壓縮，這些常用的開發工具與產品化處理流程；若配合 Webpack 的 [Multiple Entry Points](https://webpack.js.org/concepts/output/#multiple-entry-points)，可針對各個 Web Component 進行編譯與獨立輸出，並自動合併至 HTML 主頁中。
 

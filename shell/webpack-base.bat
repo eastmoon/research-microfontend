@@ -10,27 +10,24 @@ goto end
 @rem ------------------- declare function -------------------
 
 :action
-    docker rm -f webpack-%PROJECT_NAME%-dev
-    docker run -ti ^
-        -v %CLI_DIRECTORY%\app\webpack:/repo ^
-        -v %CLI_DIRECTORY%\cache\webpack\node_modules:/repo/node_modules ^
-        -v %CLI_DIRECTORY%\cache\webpack\dist:/repo/dist ^
-        -w /repo ^
-        -p 8082:8082 ^
-        --name webpack-%PROJECT_NAME%-dev ^
-        node:18 bash
+    docker rm -f webcom-%PROJECT_NAME%-demo
+    docker run -d ^
+        -v %CLI_DIRECTORY%\cache\webpack\dist:/usr/share/nginx/html ^
+        -p 8082:80 ^
+        --name webpack-%PROJECT_NAME%-demo ^
+        nginx
     goto end
 
 :args
     goto end
 
 :short
-    echo Startup Webpack develop server
+    echo Startup Webpack demo server
     goto end
 
 :help
     echo This is a Command Line Interface with project %PROJECT_NAME%
-    echo Startup Webpack develop server
+    echo Startup Webpack demo server
     echo.
     echo Options:
     echo      --help, -h        Show more information with command.
