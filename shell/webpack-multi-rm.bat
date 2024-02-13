@@ -2,6 +2,7 @@
 @echo off
 
 @rem ------------------- declare variable -------------------
+if not defined VARNUMBER1 ( set VARNUMBER1=0 )
 
 @rem ------------------- execute script -------------------
 call :%*
@@ -10,24 +11,24 @@ goto end
 @rem ------------------- declare function -------------------
 
 :action
-    docker rm -f webpack-%PROJECT_NAME%-demo
-    docker run -d ^
-        -v %CLI_DIRECTORY%\cache\webpack\dist:/usr/share/nginx/html ^
-        -p 8082:80 ^
-        --name webpack-%PROJECT_NAME%-demo ^
-        nginx
+    for /f "tokens=1" %%p in ('docker ps -q -f="name=webpack-multi-%PROJECT_NAME%-demo"') do ( set CONTAINER_ID=%%p )
+    if defined CONTAINER_ID (
+        docker rm -f %CONTAINER_ID%
+    ) else (
+        echo Docker container not find.
+    )
     goto end
 
 :args
     goto end
 
 :short
-    echo Startup Webpack demo server
+    echo Remove Web component demo server
     goto end
 
 :help
     echo This is a Command Line Interface with project %PROJECT_NAME%
-    echo Startup Webpack demo server
+    echo Remove Web component demo server
     echo.
     echo Options:
     echo      --help, -h        Show more information with command.

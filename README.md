@@ -96,6 +96,8 @@ Web Component 是基於 [HTMLElement](https://developer.mozilla.org/en-US/docs/W
 
 ### Webpack
 
+#### Base
+
 + [範本程式](./app/webpack)
     - [範例網址：localhost:8082](http://localhost:8082/)
 + 命令指令：
@@ -103,9 +105,23 @@ Web Component 是基於 [HTMLElement](https://developer.mozilla.org/en-US/docs/W
     - ```mf webpack base rm```：移除範本伺服器
     - ```mf webpack base dev```：啟動開發環境容器，並以 bash 進入容器內
     - ```mf webpack base serve```：啟動 Webpack 開發伺服器
-    - ```mf webpack base dev```：編譯 Webpack 專案
+    - ```mf webpack base build```：編譯 Webpack 專案
 
 基於 Webpack 進行 JavaScript 封裝，本質上，藉由 Webpack 的封裝並未於直接撰寫有何差別，只是 Webpack 可提供諸如開發伺服器、JS 與 CSS 整合與壓縮，這些常用的開發工具與產品化處理流程；若配合 Webpack 的 [Multiple Entry Points](https://webpack.js.org/concepts/output/#multiple-entry-points)，可針對各個 Web Component 進行編譯與獨立輸出，並自動合併至 HTML 主頁中。
+
+#### Multiple project
+
++ [範本程式](./app/webpack-multi)
+    - [範例網址：localhost:8083](http://localhost:8083/)
++ 命令指令：
+    - ```mf webpack multi```：啟動範本伺服器，伺服器內容來源於編譯 Webpack 專案
+    - ```mf webpack multi rm```：移除範本伺服器
+    - ```mf webpack multi dev```：啟動開發環境容器，並以 bash 進入容器內
+    - ```mf webpack multi build [--hoem|--com1|--com2]```：編譯 Webpack 專案
+
+基於 Webpack 的 Base 設計延伸，將專案中的 com-1、com-2 兩個 Web Component 獨立成 Webpack 專案，並修改 home 中的 index.html 來設定載入元件，並呈現內容。
+
+就結構來說，這樣的設計符合對微前端的專案分離，並獨力編譯的結構，但對於動態掛載或知悉應掛載內容部分仍需額外調整以簡化對 home 的手動修改。
 
 ### Multiple Frontend Framework
 
