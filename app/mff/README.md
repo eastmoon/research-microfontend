@@ -18,6 +18,14 @@
 + 進入 vue-app 專案，執行 ```npm run dev``` 啟動開發伺服器
 + 進入 vue-app 專案，執行 ```npm run build``` 編譯專案
 
+修復對應容器的開發伺服器異常：
+
++ 使用 ```server.host: true }``` 修復指定接受全域名
++ 使用 ```server.watch: { usePolling: true }``` 修復容器目錄監測異常，改為輪循監測
++ 參考文獻
+    - [Server Options](https://vitejs.dev/config/server-options.html)
+
+詳細設定參考 [vite.config.js](./vue-app/vite.config.js)
 
 ### Angular
 
