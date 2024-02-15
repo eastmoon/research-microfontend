@@ -19,14 +19,14 @@ goto end
     )
 
     @rem execute action
-    docker rm multi-%PROJECT_NAME%-dev-vue%
+    docker rm multi-%PROJECT_NAME%-dev-vue
     docker run -ti --rm ^
         -v %CLI_DIRECTORY%\app\mff\%PROJ%:/repo ^
         -v %CLI_DIRECTORY%\cache\mff\%PROJ%\node_modules:/repo/node_modules ^
         -v %CLI_DIRECTORY%\cache\mff\%PROJ%\dist:/repo/dist ^
         -p 8084:5173 ^
         -w /repo ^
-        --name multi-%PROJECT_NAME%-dev-vue% ^
+        --name multi-%PROJECT_NAME%-dev-vue ^
         node:18 bash -l -c "npm install && npm run dev"
 
     goto end
