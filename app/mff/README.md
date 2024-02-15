@@ -9,6 +9,16 @@
 + 進入 react-app 專案，執行 ```npm run start``` 啟動開發伺服器
 + 進入 react-app 專案，執行 ```npm run build``` 編譯專案
 
+修復對應容器的開發伺服器異常：
+
++ 添加一個 .env.development 環境變數檔案供 ```npm run start``` 執行時宣告開發伺服器參數
+    - 使用 ```HOST=0.0.0.0``` 修復指定接受全域名
+    - 使用 ```PORT=8084``` 修復熱修復在 Socket 連線失敗
+    - 使用 ```CHOKIDAR_USEPOLLING=true``` 或 ```WATCHPACK_POLLING=true``` 修復容器目錄監測異常，改為輪詢監測；此兩者差別是基於 react-script 5.x.x 版本之後
++ 參考文獻
+    - [Adding Development Environment Variables In .env](https://create-react-app.dev/docs/adding-custom-environment-variables/#adding-development-environment-variables-in-env)
+    - [Advanced Configuration](https://create-react-app.dev/docs/advanced-configuration)
+
 ### Vue
 
 使用 [create-vue](https://vuejs.org/guide/quick-start.html#creating-a-vue-application) 工具來建立專案
