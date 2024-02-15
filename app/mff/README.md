@@ -47,3 +47,12 @@
 + 進入 angular-app 專案，執行 ```npm run build``` 編譯專案
 
 其他詳細運用可參考 [Angular command line interface](https://github.com/eastmoon/tutorial-js-angular/blob/main/repo/readme.md)
+
+修復對應容器的開發伺服器異常：
+
++ 在 ```npm run start``` 執行時，添加以下參數至 package.json 中
+    - 使用 ```--host 0.0.0.0``` 修復指定接受全域名
+    - 使用 ```--port 8084``` 修復熱修復在 Socket 連線失敗
+    - 使用 ```--poll 500``` 修復容器目錄監測異常，改為每 500ms 輪詢監測
++ 參考文獻
+    - [ng serve - CLI](https://angular.io/cli/serve)
