@@ -56,7 +56,20 @@
 #### Web Component
 
 + [Vue and Web Components](https://vuejs.org/guide/extras/web-components.html)
+    - [vue-custom-element-example](https://github.com/ElMassimo/vue-custom-element-example/tree/main)
     - [@vue/web-component-wrapper](https://github.com/vuejs/vue-web-component-wrapper)
+
+基於 Vue 框架設計專案輸出的 JS 可以掛載為 Web Component，以便用於微前端的頁面整合，期設定需包括以下步驟：
+
++ 在 ```main.js``` 中，將原本 createApp 的函數改為 defineCustomElement
++ 將原有 ```App.vue``` 改名為 ```App.ce.vue```，使其成為 Vue Single-File Components (SFCs)，
++ 將 SFC 交由 defineCustomElement 轉換為元件
++ 使用 customElements 註冊元件
++ 在 index.html 中，將原本供元件索引的元件改為 Web Component 註冊的元件
+
+詳細設定參考範例程式 [vue-app](./vue-app/src) 的程式，在此補充應注意的建置規則：
+
++ 所有在 SFC 中的 style 會預設載入 customElement 的 shadow DOM style 標籤內
 
 ### Angular
 
@@ -93,7 +106,7 @@
     - 移除 NgModule 中的 bootstrap 設定
 + 在 index.html 中，將原本供元件索引的元件改為 Web Component 註冊的元件
 
-詳細設定參考範例程式 [angular-app](./angular-app/src) 的程式，在此說明建置規則：
+詳細設定參考範例程式 [angular-app](./angular-app/src) 的程式，在此補充應注意的建置規則：
 
 + 註冊元素使用 createCustomElement 函數
 依據已知範例，由於 Angular 建議使用 createCustomElement 函數登記，但此函數其中一個參數是需要 Injector 物件，這導致該函數必需在建構方法或任何可以取回相依注入物件的函數中執行；這也導致註冊行為無法被提取至 ```main.ts``` 中，替代啟動流程。

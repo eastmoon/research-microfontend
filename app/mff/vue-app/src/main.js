@@ -1,4 +1,6 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { defineCustomElement } from 'vue'
+import App from './App.ce.vue'
 
-createApp(App).mount('#app')
+const elm = defineCustomElement(App)
+
+customElements.define('app-vue-webcom', elm)

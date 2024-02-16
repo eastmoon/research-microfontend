@@ -1,10 +1,16 @@
 <script setup>
 import { ref } from 'vue'
 
-const msg = ref('Vue, Hello World!')
+const msg = ref('Vue, Hello World!!')
 </script>
 
 <template>
   <h1>{{ msg }}</h1>
   <input v-model="msg" />
 </template>
+
+<style>
+h1 {
+  color: gray
+}
+</style>
