@@ -31,6 +31,17 @@
     - [Convert Existing React Components into WebComponents](https://levelup.gitconnected.com/2b33b842ff9a)
     - [React to Web Component](https://github.com/bitovi/react-to-web-component)
 
+基於 React 框架設計專案輸出的 JS 可以掛載為 Web Component，以便用於微前端的頁面整合，期設定需包括以下步驟：
+
++ 在 ```index.js``` 中，使用原生 HTMLElement 封裝 ReactDOM 的行為
++ 將 ```App.css``` 中的內容以多行撰寫形式改為變數寫在 ```App.js```
++ 在 index.html 中，將原本供元件索引的元件改為 Web Component 註冊的元件
+
+詳細設定參考範例程式 [react-app](./react-app/src) 的程式，在此補充應注意的建置規則：
+
++ ShadowDOM 樣式遺失
+由於 React 使用 ```import 'xxx.css'``` 會基於框架編譯流程被抽離為獨立檔案，這使得載入 css 也會是在外部，而非元件的 ShadowDOM 中；若要改變則需使用 style-component 或將樣式以變數寫入 ```App.js``` 中
+
 ### Vue
 
 #### 建置專案
