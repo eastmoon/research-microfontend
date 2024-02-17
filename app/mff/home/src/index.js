@@ -20,14 +20,14 @@ function webcom(path) {
         if ( res["entrypoints"] !== undefined ) {
             res["entrypoints"].forEach((item, i) => {
                 if ( item.endsWith(".js") ) {
-                    console.log(`<script src=${path}/${item} type='module'></script>`)
+                    console.log(`insert: <script src=${path}/${item} type='module'></script>`)
                     let elm = document.createElement("script");
                     elm.src = `${path}/${item}`;
                     elm.type = 'module';
                     root.appendChild(elm);
                 }
                 if ( item.endsWith(".css") ) {
-                    console.log(`<link href="${path}/${item}" rel="stylesheet">`)
+                    console.log(`insert: <link href="${path}/${item}" rel="stylesheet">`)
                     let elm = document.createElement("link");
                     elm.href = `${path}/${item}`;
                     elm.rel = 'stylesheet';
@@ -35,7 +35,6 @@ function webcom(path) {
 
                 }
             });
-            console.log(root);
         }
     })
 }
