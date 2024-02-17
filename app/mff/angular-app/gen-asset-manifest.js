@@ -44,4 +44,4 @@ const assets = {
     files: afiles,
     entrypoints: aentrypoints
 }
-fs.writeFileSync( path.join(contentPath, "assets-manifest.json"), JSON.stringify(assets) );
+fs.writeFileSync( path.join(contentPath, "asset-manifest.json"), JSON.stringify(assets) );
