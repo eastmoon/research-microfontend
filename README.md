@@ -26,6 +26,8 @@
 + Iframes and Web Components
 + Custom Solutions and Integration with Existing Frameworks
 
+本調研項目專注於 Web Components 設計原理，並以此研究架構觀念與設計方式。
+
 ## 設計議題
 
 ### Pure JavaScript
@@ -134,15 +136,46 @@ Web Component 是基於 [HTMLElement](https://developer.mozilla.org/en-US/docs/W
     - ```mf mff rm```：移除範本伺服器
     - ```mf mff dev```：進入專案建置容器
         + ```mf mff dev [home|react|vue|angular]``` 進入指定前端框架對應的建置容器
-    - ```mf mff dev [home|react|vue|angular]```：編譯指定前端框架專案，並輸出到 cache/mff 目錄下
+    - ```mf mff build [home|react|vue|angular]```：編譯指定前端框架專案，並輸出到 cache/mff 目錄下
+    - ```mf mff serve [react|vue|angular]```：啟動指定前端框架專案開發伺服器
+
+主流前端框架 React、Angular、Vue 都是用戶端繪製 ( CSR、Clinet-Side Rendering ) 技術，原理上各前端框架的編譯內容會包括其框架程式與開發程式，並基於開發者指定繪製內容於特定目標元素之下；以下述 React 範本為例，其框架預設指定搜尋編號為 root 的元素，並在其下繪製內容。
+
+```
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root"></div>
+```
+
+標榜單頁應用程式 ( SPA、Single Page Application ) 的前端架構，可以理解在載入主程式腳本後，會依據程式規範在 DOM 中找尋目標元素，並以滿版形式占據整個頁面，倘若要替換內容，則應該採用動態載入方式，逐步載入內容；這架構在小型專案上並無問題，但專案規模與團隊持續擴大後，前述微前端所針對的技術問題就會從中繁生，而此時就會對前端框架的架構設計產生以下疑惑：
+
++ 同時載入框架是否會導致程式衝突
++ 同時載入是否會有樣式衝突
++ 同時載入要如何管理元素繪製
++ 要如何載入前端框架編譯的動態檔名
+
+基於上述困惑，在考量前端框架混用時會對要如何避免上述問題或更多衝突問題而感到困惑而難以著手，然而，對於原生能做但框架卻會衝突也不免讓人為難；而 [micro-frontends.org](https://micro-frontends.org/) 提倡使用 Web Component，便基於這概念調查主要框架調查 Web Component 方式，相關研究成果可參考[範本程式](./app/mff)的說明。
+
+就結論來說，僅是改變各框架的進入點程式，將原本指定繪製到目標的動作修改並封裝在 HTMLElement 內，再由 customElements 註冊；不過，實務上仍有諸多設計規範要注意：
+
++ 避免 JS、CSS 分離檔案，並非所有框架設計都能將樣式封入 HTMLElement，這會導致樣式渲染到外層
++ 避免使用絕對位置的圖像素材，或圖像素材應利用參數替換，主要是考量 Web Component 部屬時的位置浮動，若無法替換相對路徑則圖像素材必然會與外部資源一同存放
++ 依據框架不同需產生 ```asset-manifest.json``` 以供導入方檢查並增加對應的 ```script``` 與 ```link``` 標籤
++ 原則上 Web Componet 是獨立行為，若無額外撰寫事件或其他通訊方式，是無法提供外部知悉內部狀態
 
 ### Webpack Module Federation
 
 基於 Webpack Module Federation 設計原理，應用於動態取回外部資源。
 
++ [Module Federation - Webpack](https://webpack.js.org/concepts/module-federation/)
+    - [微服務很夯，那你有聽過微前端嗎？初探 Micro Frontends 程式架構](https://medium.com/starbugs/e0a8469be601)
+    - [[architecture] Micro-Frontends](https://pjchender.dev/system-design-and-architecture/architecture-udemy-microfrontend/)
+
 ### Single-Spa
 
 基於前述範本，使用 Single-Spa 框架。
+
++ [single-spa](https://single-spa.js.org/)
+    - [Concept: Microfrontends](https://single-spa.js.org/docs/microfrontends-concept/)
 
 ## 文獻
 
@@ -158,8 +191,3 @@ Web Component 是基於 [HTMLElement](https://developer.mozilla.org/en-US/docs/W
             - [Removing iframe and Switching to Web Component for the Most Popular PDF Viewer](https://apryse.com/blog/replacing-iframe-to-web-component)
     - [HTML <iframe> Tag - w3schools](https://www.w3schools.com/tags/tag_iframe.ASP)
         + [The Strengths and Benefits of Micro Frontends](https://www.toptal.com/front-end/micro-frontends-strengths-benefits)
-    - [Module Federation - Webpack](https://webpack.js.org/concepts/module-federation/)
-        + [微服務很夯，那你有聽過微前端嗎？初探 Micro Frontends 程式架構](https://medium.com/starbugs/e0a8469be601)
-        + [[architecture] Micro-Frontends](https://pjchender.dev/system-design-and-architecture/architecture-udemy-microfrontend/)
-+ [single-spa](https://single-spa.js.org/)
-    - [Concept: Microfrontends](https://single-spa.js.org/docs/microfrontends-concept/)
