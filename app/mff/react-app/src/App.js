@@ -4,7 +4,7 @@ function App() {
   const styles=`
   .App { text-align: center; }
   .App-logo {
-    height: 40vmin;
+    height: 20vmin;
     pointer-events: none;
     animation: App-logo-spin infinite 20s linear;
   }
@@ -17,7 +17,6 @@ function App() {
   }
   .App-header {
     background-color: #282c34;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
