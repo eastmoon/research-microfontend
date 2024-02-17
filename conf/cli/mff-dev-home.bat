@@ -19,13 +19,13 @@ goto end
     )
 
     @rem start project
-    docker rm -f mff-%PROJECT_NAME%-dev-react
+    docker rm -f mff-%PROJECT_NAME%-dev-home
     docker run -ti --rm ^
         -v %CLI_DIRECTORY%\app\mff\%PROJ%:/repo ^
         -v %CLI_DIRECTORY%\cache\mff\%PROJ%\node_modules:/repo/node_modules ^
         -v %CLI_DIRECTORY%\cache\mff\%PROJ%\dist:/repo/dist ^
         -w /repo ^
-        --name mff-%PROJECT_NAME%-dev-react ^
+        --name mff-%PROJECT_NAME%-dev-home ^
         react.dev:%PROJECT_NAME% bash
     goto end
 
