@@ -42,6 +42,10 @@
 + ShadowDOM 樣式遺失
 由於 React 使用 ```import 'xxx.css'``` 會基於框架編譯流程被抽離為獨立檔案，這使得載入 css 也會是在外部，而非元件的 ShadowDOM 中；若要改變則需使用 style-component 或將樣式以變數寫入 ```App.js``` 中
 
+#### 產生 assets-manifest
+
+產生 ```assets-manifest.json``` 以提供目前發佈內容的檔案位置、進入點所需檔案；此檔在 react 專案會自動生成，無須額外處理。
+
 ### Vue
 
 #### 建置專案
@@ -81,6 +85,21 @@
 詳細設定參考範例程式 [vue-app](./vue-app/src) 的程式，在此補充應注意的建置規則：
 
 + 所有在 SFC 中的 style 會預設載入 customElement 的 shadow DOM style 標籤內
+
+#### 產生 assets-manifest
+
+產生 ```assets-manifest.json``` 以提供目前發佈內容的檔案位置、進入點所需檔案；vue 專案使用 vite 編譯，無法應用 Webpack 的功能，但可使用 vite 的配置檔 ```vite.config.js``` 中設定 manifest 生成。
+
+```
+export default defineConfig({
+    ...
+    build: {
+      manifest: true
+    },
+})
+```
+
+基於 [Backend Integration - Vite](https://vitejs.dev/guide/backend-integration.html) 文件可知，manifest 生成格式與預期的 assets-manifest 結構有差，額外撰寫 ```gen-asset-manifest.js``` 進行編譯後轉換。
 
 ### Angular
 
@@ -133,3 +152,9 @@
 
 + 設定 ShadowDOM
 為避免元件內容樣式渲染至外部，建議元件本身應設定為 ```ViewEncapsulation.ShadowDom```。
+
+#### 產生 assets-manifest
+
+產生 ```assets-manifest.json``` 以提供目前發佈內容的檔案位置、進入點所需檔案；angular 專案使用 esbuild 編譯，無法應用 Webpack 的功能，雖可使用 esbuild 插件，但經實測後發現其內容與最終發佈內容有落差，因此，改用 Angular CLI 的編譯參數 ```--stats-json true```，在編譯後輸出資源狀態資訊。
+
+由於 ```stat.json``` 描述整個編譯的輸出入檔案資訊，可用於生成 assets-manifest 結構，因此，額外撰寫 ```gen-asset-manifest.js``` 進行編譯後轉換。

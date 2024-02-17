@@ -3,6 +3,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 const isProduction = process.env.NODE_ENV == 'production';
 
@@ -14,6 +15,8 @@ const config = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
+        filename: '[name]-[contenthash].js',
+        chunkFilename: '[id]-[chunkhash].js',
     },
     devServer: {
         open: true,
@@ -35,6 +38,32 @@ const config = {
 
         // Add your plugins here
         // Learn more about plugins from https://webpack.js.org/configuration/plugins/
+        // Generate an asset manifest file with the following content:
+        // - "files" key: Mapping of all asset filenames to their corresponding
+        //   output file so that tools can pick it up without having to parse
+        //   `index.html`
+        // - "entrypoints" key: Array of files which are included in `index.html`,
+        //   can be used to reconstruct the HTML if necessary
+        new WebpackManifestPlugin({
+          fileName: 'asset-manifest.json',
+          generate: (seed, files, entrypoints) => {
+            const manifestFiles = files.reduce((manifest, file) => {
+              manifest[file.name] = file.path;
+              return manifest;
+            }, seed);
+
+            for (const [key, value] of Object.entries(entrypoints)) {
+              const arr = value.filter(fileName => !fileName.endsWith('.map'));
+              entrypoints[key] = arr[0];
+            }
+            const entrypointFiles = entrypoints;
+
+            return {
+              files: manifestFiles,
+              entrypoints: entrypointFiles,
+            };
+          },
+        }),
     ],
     module: {
         rules: [

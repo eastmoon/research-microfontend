@@ -2,10 +2,9 @@
   "name": "vue-app",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "vite --host=0.0.0.0",
-    "build": "vite build",
+    "build": "vite build && node gen-asset-manifest.js",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -14,6 +13,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.3",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
+    "glob": "^10.3.10",
     "vite": "^5.0.11"
   }
 }
