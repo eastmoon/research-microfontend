@@ -128,7 +128,7 @@ Web Component 是基於 [HTMLElement](https://developer.mozilla.org/en-US/docs/W
 建立不同前端框架的範本
 
 + [範本程式](./app/mff)
-    - [範例網址：localhost:8083](http://localhost:8083/)
+    - [範例網址：localhost:8084](http://localhost:8084/)
 + 命令指令：
     - ```mf mff```：啟動範本伺服器，伺服器內容來源於編譯 Webpack 專案
     - ```mf mff rm```：移除範本伺服器
@@ -138,19 +138,7 @@ Web Component 是基於 [HTMLElement](https://developer.mozilla.org/en-US/docs/W
 
 ### Webpack Module Federation
 
-基於 Webpack Module Federation 設計原理，建立不同前端框架的範本混用：
-
-+ 基礎封裝 base 與存取原則
-    + 模組登記、搜尋、取回方式
-+ 基於框架的 web component
-    + React 不同版本
-    + React、Vue、Angular 框架混用
-
-其設計應注意以下可能問題：
-
-+ 多個封裝、分次載入運作
-+ 一個頁面動態載入多個框架程式是否會有 JS 衝突
-+ 如何正確呼叫到指定框架的內容
+基於 Webpack Module Federation 設計原理，應用於動態取回外部資源。
 
 ### Single-Spa
 

@@ -13,8 +13,10 @@ goto end
     docker rm -f mff-%PROJECT_NAME%-demo
     docker run -d ^
         -v %CLI_DIRECTORY%\cache\mff\home\dist:/usr/share/nginx/html ^
-        -v %CLI_DIRECTORY%\cache\mff\com-1\dist:/usr/share/nginx/html/js/com-1 ^
-        -v %CLI_DIRECTORY%\cache\mff\com-2\dist:/usr/share/nginx/html/js/com-2 ^
+        -v %CLI_DIRECTORY%\cache\mff\react-app\dist\static:/usr/share/nginx/html/assets/react-app ^
+        -v %CLI_DIRECTORY%\cache\mff\react-app\dist\static\media:/usr/share/nginx/html/static/media ^
+        -v %CLI_DIRECTORY%\cache\mff\vue-app\dist\assets:/usr/share/nginx/html/assets/vue-app ^
+        -v %CLI_DIRECTORY%\cache\mff\angular-app\dist\angular-app\browser:/usr/share/nginx/html/assets/angular-app ^
         -p 8084:80 ^
         --name mff-%PROJECT_NAME%-demo ^
         nginx
