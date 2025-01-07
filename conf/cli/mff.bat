@@ -18,6 +18,8 @@ goto end
         -v %CLI_DIRECTORY%\cache\mff\vue-app\dist:/usr/share/nginx/html/assets/vue-app ^
         -v %CLI_DIRECTORY%\cache\mff\angular-app\dist\browser:/usr/share/nginx/html/assets/angular-app ^
         -p 8084:80 ^
+        --network bridge ^
+        --hostname nginx ^
         --name mff-%PROJECT_NAME%-demo ^
         nginx
     goto end
@@ -26,12 +28,12 @@ goto end
     goto end
 
 :short
-    echo Startup multi frontend framework demo server
+    echo Startup nginx server
     goto end
 
 :help
     echo This is a Command Line Interface with project %PROJECT_NAME%
-    echo Startup multi frontend framework demo server
+    echo Startup nginx server with HTTP2 configuration
     echo.
     echo Options:
     echo      --help, -h        Show more information with command.
